@@ -24,7 +24,10 @@ function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ user }}
+      value={{
+        user,
+        bgClassName: "bg-red-500"
+      }}
     >
       {children}
     </UserContext.Provider>

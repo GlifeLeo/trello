@@ -2,12 +2,16 @@ const users = [
   {
     username: "user1",
     password: "123456", // 64578365hkj@372537248p435 hash
-    token: "token1"
+    token: "token1",
+    name: "Anh",
+    email: "email1@gmail.com",
   },
   {
     username: "user2",
     password: "123456",// 64578365hkj@372537248p435 hash
-    token: "token2"
+    token: "token2",
+    name: "B",
+    email: "email2@gmail.com",
   }
 ]
 
