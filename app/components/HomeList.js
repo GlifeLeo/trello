@@ -25,6 +25,7 @@ function HomeList() {
 
   return (
     <div>
+      Home
       {
         lists.length > 0 && lists.map((list, index) => {
           return <ul key={index}>
