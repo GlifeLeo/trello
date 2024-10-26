@@ -60,17 +60,10 @@ function HomeList() {
         {
           lists.length > 0 && lists.map((list, index) => {
             return <li key={index} className=' flex justify-between border min-h-8 rounded-lg py-1 px-3'>
-              {/* <div onClick={() => {
-                setSelectedIndex(index)
-                setShowEdit(true)
-              }}>
-                {list.listName}
-              </div> */}
-
               <div>
                 <input
+                  value={selectedIndex == index ? editListName || list.listName : list.listName}
                   className='w-full'
-                  defaultValue={list.listName}
                   onClick={() => {
                     setEditListName(list.listName)
                     setSelectedIndex(index)
@@ -78,10 +71,18 @@ function HomeList() {
                   }}
                   onChange={(e) => setEditListName(e.target.value)}
                 />
-                <Link href={"list-detail/" + list.id}>View</Link>
+                <Link href={"list-detail/" + list.id}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg></Link>
               </div>
               {showEdit && selectedIndex == index && <>
-                <button className='mr-2' onClick={() => setShowEdit(false)}>Cancel</button>
+                <button className='mr-2' onClick={() => {
+                  setEditListName(list.listName)
+                  setShowEdit(false)
+                }
+                }>Cancel</button>
                 <button onClick={handleUpdateListName}>Save</button>
               </>}
               <button className='ml-3' onClick={() => handleDeleteList(index)}>
