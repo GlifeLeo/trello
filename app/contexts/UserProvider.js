@@ -11,12 +11,19 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(null)
   const [userLoaded, setUserLoaded] = useState(false)
 
-  useEffect(() => {
+  function getUser() {
     const token = localStorage.getItem("token")
     const res = getUserByToken(token)
     setUser(res.user)
     setUserLoaded(true)
+  }
+  useEffect(() => {
+    getUser()
   }, [])
+
+  function refetchUser() {
+    getUser()
+  }
 
   if (!user && userLoaded) {
     router.push("/login")
@@ -26,6 +33,7 @@ function UserProvider({ children }) {
     <UserContext.Provider
       value={{
         user,
+        refetchUser,
         bgClassName: "bg-red-500"
       }}
     >

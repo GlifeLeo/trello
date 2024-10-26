@@ -1,8 +1,9 @@
 "use client"
 
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { login } from "@/backend_fake/be"
+import { UserContext } from '../contexts/UserProvider'
 function LoginPage() {
   const router = useRouter()
   const [state, setState] = useState({
@@ -12,11 +13,14 @@ function LoginPage() {
   // const [username, setUsername] = useState("")
   // const [password, setPassword] = useState("")
 
+  const { refetchUser } = useContext(UserContext)
+
   function handleLogin() {
     const { username, password } = state
     const res = login(username, password)
     if (res.success) {
       localStorage.setItem("token", res.token)
+      refetchUser()
       router.push("/")
     } else {
       console.log(res.message)
