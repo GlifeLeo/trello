@@ -60,8 +60,8 @@ function createNewList(listName) {
 
 function getLists(filter) {
   if (filter == "cardLength>0")
-    return lists.filter(l => l.cards.length > 0)
-  return lists
+    return [...lists.filter(l => l.cards.length > 0)]
+  return [...lists]
 }
 
 function getListWithCardLengthGt0() {
@@ -69,7 +69,7 @@ function getListWithCardLengthGt0() {
 }
 
 function deleteList(index) {
-  lists.slice(index, 1)
+  lists.splice(index, 1)
 }
 
 function editList(index, newListName) {
