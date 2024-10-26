@@ -1,15 +1,10 @@
 "use client"
 
-import { useContext } from "react";
-import { UserContext } from "./contexts/UserProvider";
-
+import HomeList from "@/app/components/HomeList"
 export default function Home() {
-  const { user } = useContext(UserContext)
-
   return (
     <div>
-      Home
-      user: {user?.username}
+      <HomeList />
     </div>
   );
 }
