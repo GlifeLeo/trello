@@ -48,14 +48,14 @@ function getUserByToken(token) {
 //keys: listName, cards
 // values: "to do", []
 let lists = [
-  { listName: "to do", cards: ["1", "2"] },
-  { listName: "doing", cards: [] },
-  { listName: "done", cards: [] },
+  { id: 1, listName: "to do", cards: ["1", "2"] },
+  { id: 2, listName: "doing", cards: [] },
+  { id: 3, listName: "done", cards: [] },
 ]// {listName:"to do",cards:[]}
-
 // CRUD 
 function createNewList(listName) {
-  lists.push({ listName: listName, cards: [] })
+  const listIds = lists.map(list => list.id).sort((a, b) => b - a)
+  lists.push({ id: (listIds[0] || 0) + 1, listName: listName, cards: [] })
 }
 
 function getLists(filter) {
@@ -76,11 +76,16 @@ function editList(index, newListName) {
   lists[index].listName = newListName
 }
 
+function editListById(id) {
+  return lists.find(list => list.id === Number(id))
+}
+
 module.exports = {
   login,
   getUserByToken,
   createNewList,
   deleteList,
   editList,
-  getLists
+  getLists,
+  editListById
 }

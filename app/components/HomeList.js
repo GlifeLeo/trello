@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { getLists, createNewList, deleteList, editList } from "@/backend_fake/be"
 import Loading from "@/app/components/common/Loading"
+import Link from "next/link"
 
 function HomeList() {
   const [lists, setLists] = useState([])
@@ -66,16 +67,19 @@ function HomeList() {
                 {list.listName}
               </div> */}
 
-              <input
-                className='w-full'
-                defaultValue={list.listName}
-                onClick={() => {
-                  setEditListName(list.listName)
-                  setSelectedIndex(index)
-                  setShowEdit(true)
-                }}
-                onChange={(e) => setEditListName(e.target.value)}
-              />
+              <div>
+                <input
+                  className='w-full'
+                  defaultValue={list.listName}
+                  onClick={() => {
+                    setEditListName(list.listName)
+                    setSelectedIndex(index)
+                    setShowEdit(true)
+                  }}
+                  onChange={(e) => setEditListName(e.target.value)}
+                />
+                <Link href={"list-detail/" + list.id}>View</Link>
+              </div>
               {showEdit && selectedIndex == index && <>
                 <button className='mr-2' onClick={() => setShowEdit(false)}>Cancel</button>
                 <button onClick={handleUpdateListName}>Save</button>
