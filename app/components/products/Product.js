@@ -8,7 +8,7 @@ function Product({ imageUrl, name, price, id }) {
   const [showImage, setShowImage] = useState(false)
   return (
     <div>
-      <img onClick={() => setShowImage(true)} src={imageUrl} className='w-full h-20 object-cover' />
+      <img onClick={() => setShowImage(true)} src={imageUrl} className='w-full h-40 object-cover' />
       <Link href={"/products/" + id}>
         <div className='p-4'>
           {name}<br />
